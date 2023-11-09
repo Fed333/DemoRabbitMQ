@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "name": "romanko",
+      "password": "romanko123",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "romanko",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "exchanges": [
+    {
+      "name": "goods.exchange",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "queues": [
+    {
+      "name": "goods.shoes",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "goods.clothes",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "goods.exchange",
+      "vhost": "/",
+      "destination": "goods.shoes",
+      "destination_type":"queue",
+      "routing_key": "goods.shoes.#"
+    },
+    {
+      "source": "goods.exchange",
+      "vhost": "/",
+      "destination": "goods.clothes",
+      "destination_type":"queue",
+      "routing_key": "goods.clothes.#"
+    }
+  ]
+}
