@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '2.6.3'
+}
+
+group 'com.romanko.rabbitmq.demo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testRuntimeOnly 'junit:junit:4.13.2'
+
+    compileOnly('org.projectlombok:lombok:1.18.26')
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    implementation group: 'org.springframework.amqp', name: 'spring-rabbit', version: '2.3.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.6.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.6.3'
+
+    implementation group: 'org.slf4j', name: 'slf4j-api'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.3'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+application {
+    mainClass = 'com.romanko.rabbitmq.demo.Application'
+}
+
+test {
+   useJUnit()
+}
+
+jar {
+    enabled = true
+    manifest {
+        attributes 'Main-Class': 'com.romanko.rabbitmq.demo.Application'
+    }
+}
