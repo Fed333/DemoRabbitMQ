@@ -24,9 +24,18 @@
   "policies": [],
   "exchanges": [
     {
-      "name": "goods.exchange",
+      "name": "request.clothes.from.exchange",
       "vhost": "/",
       "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "provide.clothes.to.exchange",
+      "vhost": "/",
+      "type": "direct",
       "durable": true,
       "auto_delete": false,
       "internal": false,
@@ -35,14 +44,35 @@
   ],
   "queues": [
     {
-      "name": "goods.shoes",
+      "name": "request.clothes.from",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
       "arguments": {}
     },
     {
-      "name": "goods.clothes",
+      "name": "provide.clothes.to",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "provide.clothes.to.lids",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "provide.clothes.to.footlocker",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "provide.clothes.to.intertop",
       "vhost": "/",
       "durable": true,
       "auto_delete": false,
@@ -51,18 +81,32 @@
   ],
   "bindings": [
     {
-      "source": "goods.exchange",
+      "source": "request.clothes.from.exchange",
       "vhost": "/",
-      "destination": "goods.shoes",
-      "destination_type":"queue",
-      "routing_key": "goods.shoes.#"
+      "destination": "request.clothes.from",
+      "destination_type": "queue",
+      "routing_key": "request.clothes.from.#"
     },
     {
-      "source": "goods.exchange",
+      "source": "provide.clothes.to.exchange",
       "vhost": "/",
-      "destination": "goods.clothes",
-      "destination_type":"queue",
-      "routing_key": "goods.clothes.#"
+      "destination": "provide.clothes.to.lids",
+      "destination_type": "queue",
+      "routing_key": "provide.clothes.to.lids"
+    },
+    {
+      "source": "provide.clothes.to.exchange",
+      "vhost": "/",
+      "destination": "provide.clothes.to.footlocker",
+      "destination_type": "queue",
+      "routing_key": "provide.clothes.to.footlocker"
+    },
+    {
+      "source": "provide.clothes.to.exchange",
+      "vhost": "/",
+      "destination": "provide.clothes.to.intertop",
+      "destination_type": "queue",
+      "routing_key": "provide.clothes.to.intertop"
     }
   ]
 }
