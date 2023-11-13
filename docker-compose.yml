@@ -10,9 +10,10 @@ services:
       - "15672:15672"
       - "5672:5672"
     networks:
-      - rabbit-network
+      - adidas-network
+      - intertop-network
   adidas:
-    build: ./Adidas
+    build: manufactures/adidas
     environment:
       - RABBIT_HOST=rabbitmq
     ports:
@@ -20,8 +21,19 @@ services:
     depends_on:
       - rabbitmq
     networks:
-      - rabbit-network
-
+      - adidas-network
+  intertop:
+    build: distributors/intertop
+    environment:
+      - RABBIT_HOST=rabbitmq
+    ports:
+      - "8101:8080"
+    depends_on:
+      - rabbitmq
+    networks:
+      - intertop-network
 networks:
-  rabbit-network:
+  adidas-network:
+    driver: "bridge"
+  intertop-network:
     driver: "bridge"

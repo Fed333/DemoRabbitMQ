@@ -11,4 +11,5 @@ plugins {
 }
 
 rootProject.name = 'RapidClothes'
-include('Adidas')
+include('manufactures:adidas')
+include('distributors:intertop')
