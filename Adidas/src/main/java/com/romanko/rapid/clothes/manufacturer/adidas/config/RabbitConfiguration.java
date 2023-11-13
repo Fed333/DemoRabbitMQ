@@ -15,15 +15,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfiguration {
 
-//    @Value("${rabbit.username}")
-//    private String rabbitUsername;
-//
-//    @Value("${rabbit.password}")
-//    private String rabbitPassword;
+    @Value("${rabbit.username}")
+    private String rabbitUsername;
+
+    @Value("${rabbit.password}")
+    private String rabbitPassword;
+
+    @Value("${rabbit.host}")
+    private String rabbitHost;
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(rabbitHost);
         connectionFactory.setUsername("romanko");
         connectionFactory.setPassword("romanko123");
         return connectionFactory;

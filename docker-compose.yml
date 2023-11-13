@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  goodsrabbitmq:
+  rabbitmq:
     build: ./rabbitmq
     environment:
       - RABBITMQ_CONFIG_FILE=/etc/rabbitmq/rabbitmq.conf
@@ -9,3 +9,19 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+    networks:
+      - rabbit-network
+  adidas:
+    build: ./Adidas
+    environment:
+      - RABBIT_HOST=rabbitmq
+    ports:
+      - "8001:8080"
+    depends_on:
+      - rabbitmq
+    networks:
+      - rabbit-network
+
+networks:
+  rabbit-network:
+    driver: "bridge"

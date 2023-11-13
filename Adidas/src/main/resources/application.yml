@@ -1,0 +1,4 @@
+rabbit:
+  host: ${RABBIT_HOST:localhost}
+  username: "romanko"
+  password: "romanko123"
