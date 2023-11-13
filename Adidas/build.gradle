@@ -33,7 +33,7 @@ java {
 }
 
 application {
-    mainClass = 'com.romanko.rabbitmq.demo.Application'
+    mainClass = 'com.romanko.rapid.clothes.manufacturer.adidas.Application'
 }
 
 test {
@@ -43,6 +43,6 @@ test {
 jar {
     enabled = true
     manifest {
-        attributes 'Main-Class': 'com.romanko.rabbitmq.demo.Application'
+        attributes 'Main-Class': 'com.romanko.rapid.clothes.manufacturer.adidas.Application'
     }
 }
